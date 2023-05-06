@@ -10,8 +10,8 @@ import re
 import openai
 import asyncio
 
-os.environ["OPENAI_API_KEY"]=""
-openai.api_key = ""
+os.environ["OPENAI_API_KEY"]="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"
+openai.api_key = "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"
 
 app = FastAPI()
 # CORSを回避するための設定(ホストが違ってもアクセスを許可する)
@@ -82,20 +82,32 @@ async def websocket_endpoint(websocket: WebSocket):
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     system_prompt = '''
-    あなたは熟練のコンサルタントです。あなたが出力したスライドに応じて、ユーザが修正の要望を出すので、要望に合ったMarpで使えるMarkdown形式で修正した結果のみを出力してください。
-    Maprのフォーマットは以下の通りです。
+    あなたは熟練のコンサルタントです。与えられた文章について簡潔に説明するためのスライドを作成します。
+    一番最初に次のようなMarpのデザインテンプレートを使用したマークダウン形式で、入力のpdfのタイトルに合うカバースライドを作成してください。
     """
 
-    ---
-    <!-- スライド n -->
-    # { タイトル }
-
-    - { 本文 }
-    - { 本文 }
-    - { 本文 } 
+<!--
+class: title
+-->
+# { タイトル }
+### { 日付 }
+## D1 { 名前 }
 
     """
-    
+    それ以降は次のようなMarpのデザインテンプレートを使用し、マークダウン形式で表現して下さい。
+    概要は50文字までで、本文の箇条書きはできるだけ短くまとめてください。
+    """
+
+---
+<!--
+class: body
+-->
+# { タイトル }
+## { 概要 }
+- { 本文 }
+
+    """
+
     スライドの修正が完了したら変更分や追加分だけでなく変更を行なっていない部分についても合わせて完全な形式で出力してください。
     '''
     messages = [{"role": "system", "content": system_prompt}]
@@ -161,7 +173,7 @@ async def websocket_endpoint(websocket: WebSocket):
             with open(output_path, "w") as file:
                 file.write(output_slide)
             
-            os.system(f"npx @marp-team/marp-cli@latest {output_path} --pdf -y")
+            os.system(f"npx @marp-team/marp-cli@latest --theme-set download/template.css --pdf {output_path} --allow-local-files -y")
             
             with open(output_file, mode="rb") as file:
             # WebSocketを使用してファイルのバイナリデータをストリーミング
