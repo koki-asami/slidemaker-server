@@ -1,0 +1,19 @@
+/* @theme sample2 */
+
+@import 'default'; /* defaultテーマのCSSを継承 */
+
+section.right_bottom {
+    background: url(../images/titile.png) right bottom no-repeat;
+}
+
+section.right_top {
+    background: url(https://placehold.jp/400x400.png) right top no-repeat;
+}
+
+section.left_bottom {
+    background: url(https://placehold.jp/400x400.png) left bottom no-repeat;
+}
+
+section.left_top {
+    background: url(https://placehold.jp/400x400.png) left 40px top 40px no-repeat;
+}

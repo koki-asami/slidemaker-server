@@ -1,0 +1,62 @@
+/* @theme template */
+@import 'default'; /* defaultテーマのCSSを継承 */
+
+footer {
+    text-align: center;
+    font-size: 80%;
+}
+section.title {
+    background-image: url(../images/title_lab.png);
+    background-size: 100%;
+}
+section.title h1{
+    text-align: right;
+    font-size: 100px;
+    color: Black;
+    left: 1000px; top: 300px;
+}
+section.title h2{
+    text-align: right;
+    font-size: 50px;
+    color: Black;
+    left: 1000px; top: 400px;
+}
+section.title h3{
+    text-align: right;
+    font-size: 30px;
+    color: Black;
+    left: 1000px; top: 450px;
+}
+
+section.body {
+    position: relative;
+    background-image: url(../images/title_lab.png);   
+    background-size: 100%;
+    
+}
+section.body h1{
+    position: absolute;
+    font-size: 70px;
+    color: Black;
+    left: 100px;
+    top: 5px;
+}
+section.body h2{
+    position: absolute;
+    font-size: 40px;
+    color: Black;
+    left: 100px;
+    top: 70px;
+    word-wrap: break-word;
+    width: 1080px;
+
+}
+section.body ul{
+    position: absolute;
+    font-size: 40px;
+    color: Black;
+    left: 100px;
+    top: 200px;
+    word-wrap: break-word;
+    width: 980px;
+}
