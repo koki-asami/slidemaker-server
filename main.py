@@ -10,8 +10,8 @@ import re
 import openai
 import asyncio
 
-os.environ["OPENAI_API_KEY"]="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"
-openai.api_key = "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"
+os.environ["OPENAI_API_KEY"]=""
+openai.api_key = ""
 
 app = FastAPI()
 # CORSを回避するための設定(ホストが違ってもアクセスを許可する)
